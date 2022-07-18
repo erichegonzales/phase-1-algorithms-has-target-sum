@@ -13,18 +13,33 @@
 // }
 
 // Solution
+// function hasTargetSum(array, target) {
+//   // create an object to store all the numbers already iterated through
+//   const seenNumbers = {}
+//   // iterate through all the numbers of the array
+//   for (const currNumber of array) {
+//     // finding the complement number of the current number to add up to the target
+//     const complement = target - currNumber
+//     // if the complement number is a number we have iterated through before, return true
+//     if (seenNumbers[complement]) return true
+//     // if the number is not in there, save the current number in the object
+//     // to check if it will be a complement for future numbers in the array
+//     seenNumbers[currNumber] = true
+//   }
+//   return false
+// }
+
+// Solution with set 
+// Set objects are collections of values. You can iterate through the elements of a set in 
+// insertion order. A value in the Set may only occur once; it is unique in the Set's collection.
 function hasTargetSum(array, target) {
-  // create an object to store all the numbers already iterated through
-  const seenNumbers = {}
-  // iterate through all the numbers of the array
+  const seenNumbers = new Set() // initialize an empty Set
   for (const currNumber of array) {
-    // finding the complement number of the current number to add up to the target
     const complement = target - currNumber
-    // if the complement number is a number we have iterated through before, return true
-    if (seenNumbers[complement]) return true
-    // if the number is not in there, save the current number in the object
-    // to check if it will be a complement for future numbers in the array
-    seenNumbers[currNumber] = true
+    // .has returns true if the Set includes the complement
+    if (seenNumbers.has(complement)) return true
+    // .add adds the number to the Set
+    seenNumbers.add(currNumber)
   }
   return false
 }
@@ -32,7 +47,10 @@ function hasTargetSum(array, target) {
 /* 
   Write the Big O time complexity of your function here
   First attempt: O(n^2)
-  Solution: O
+  Solution: O(n)
+  Solution with set:
+    Time complexity: O(n)
+    Space complexity: O(n
 */
 
 /* 
