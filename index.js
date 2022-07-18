@@ -1,19 +1,38 @@
+// First attempt
+// function hasTargetSum(array, target) {
+//   // Write your algorithm here
+//   console.log(target)
+//   for (let i = 0; i < array.length - 1; i++) {
+//     for (let j = 0; j < array.length; j++) {
+//       if (i === j) continue
+//       sum = array[i] + array[j]
+//       if (sum === target) return true
+//     }
+//   }
+//   return false
+// }
+
+// Solution
 function hasTargetSum(array, target) {
-  // Write your algorithm here
-  console.log(target)
-  for (let i = 0; i < array.length - 1; i++) {
-    for (let j = 0; j < array.length; j++) {
-      if (i === j) continue
-      sum = array[i] + array[j]
-      if (sum === target) return true
-    }
+  // create an object to store all the numbers already iterated through
+  const seenNumbers = {}
+  // iterate through all the numbers of the array
+  for (const currNumber of array) {
+    // finding the complement number of the current number to add up to the target
+    const complement = target - currNumber
+    // if the complement number is a number we have iterated through before, return true
+    if (seenNumbers[complement]) return true
+    // if the number is not in there, save the current number in the object
+    // to check if it will be a complement for future numbers in the array
+    seenNumbers[currNumber] = true
   }
   return false
 }
 
 /* 
   Write the Big O time complexity of your function here
-  O(n^2)
+  First attempt: O(n^2)
+  Solution: O
 */
 
 /* 
@@ -21,7 +40,8 @@ function hasTargetSum(array, target) {
   nested loop through length of the array
   if the indices i and j are the same, go to the next iteration
     sum the i element and the j element and check if its equal to the target
-      return true if sum = target
+      return true if sum =
+       target
   iterate through all the elements
   return false if no sum is equal to the target
 */
