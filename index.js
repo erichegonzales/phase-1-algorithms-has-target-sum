@@ -1,13 +1,29 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+  console.log(target)
+  for (let i = 0; i < array.length - 1; i++) {
+    for (let j = 0; j < array.length; j++) {
+      if (i === j) continue
+      sum = array[i] + array[j]
+      if (sum === target) return true
+    }
+  }
+  return false
 }
 
 /* 
   Write the Big O time complexity of your function here
+  O(n^2)
 */
 
 /* 
   Add your pseudocode here
+  nested loop through length of the array
+  if the indices i and j are the same, go to the next iteration
+    sum the i element and the j element and check if its equal to the target
+      return true if sum = target
+  iterate through all the elements
+  return false if no sum is equal to the target
 */
 
 /*
@@ -29,6 +45,21 @@ if (require.main === module) {
 
   console.log("Expecting: false");
   console.log("=>", hasTargetSum([1, 2, 5], 4));
+
+  console.log("");
+
+  console.log("Expecting: true");
+  console.log("=>", hasTargetSum([10, 6, 9, 1, 2], 12));
+
+  console.log("");
+
+  console.log("Expecting: false");
+  console.log("=>", hasTargetSum([1, 0, 8, 10, 5], 7));
+
+  console.log("");
+
+  console.log("Expecting: false");
+  console.log("=>", hasTargetSum([7, 8, 2, 5, 5, 9], 3));
 }
 
 module.exports = hasTargetSum;
